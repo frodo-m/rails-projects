@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Demo Blog" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <!-- Hero Section -->
+    <section class="hero is-success is-small">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <%= link_to 'Demo Blog', root_path, class: "navbar-item", style: "color: #ffffff"; %>
+              <span class="navbar-burger burger" data-target="navbarManuHeroA">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarManuHeroA" class="navbar-menu">
+              <div class="navbar-end">
+                <%= link_to "Create New Post", new_post_path, class: "navbar-item", style: "color: #ffffff" %>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="hero-body">
+        <div class="container has-text-left">
+          <h1 class="title" style="color: #ffffff">
+            <%= yield :page_title %>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
+  </body>
+</html>
